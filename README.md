@@ -64,10 +64,7 @@
 
 <h3>Manufacturing:</h3>
     <p>Transfer engineering designs, procurement details, and production schedules.</p>
-
-<h2>Competitors and Comparison:</h2>
-    <p>Competitors include Axway SecureTransport, GlobalSCAPE Enhanced File Transfer (EFT), and MuleSoft Anypoint Platform. IBM Sterling Connect:Direct stands out with its reliability, advanced scheduling, and strong integration capabilities.</p>
-
+    
 <h2>Conclusion:</h2>
     <p>IBM Sterling Connect:Direct is a proven solution for secure, reliable, and automated file transfers in enterprise environments. It ensures business continuity, compliance, and performance, making it an essential tool for organizations dealing with mission-critical data transfers.</p>
 
