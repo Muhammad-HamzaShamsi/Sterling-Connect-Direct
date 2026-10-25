@@ -1,70 +1,52 @@
-# IBM Sterling Connect:Direct
+# 🔁 IBM Sterling Connect:Direct
 
-<h2>Introduction:</h2>
-    <p>IBM Sterling Connect:Direct (formerly known as NDM – Network Data Mover) is a peer-to-peer file transfer solution designed specifically for secure, reliable, and high-volume data transfer between enterprises or within an organization. It is optimized for batch file transfer, enabling organizations to move large volumes of data with enhanced security, automation, and reliability compared to traditional file transfer methods such as FTP.</p>
-    <p>It is widely used in industries such as banking, retail, telecommunications, and manufacturing, where mission-critical data needs to be transferred consistently and securely.</p>
+![IBM Sterling](https://img.shields.io/badge/IBM-Sterling_Connect:Direct-052FAD?logo=ibm&logoColor=white)
+![MFT](https://img.shields.io/badge/Managed-File_Transfer-success)
 
-<h2>Key Features:</h2>
-    <h3>High-Performance Data Transfer:</h3>
-    <p>Designed to handle large file transfers efficiently. Supports checkpoint/restart capabilities to resume interrupted transfers, ensuring reliability.</p>
+An installation guide and overview presentation for **IBM Sterling Connect:Direct**, IBM's secure, high-volume, peer-to-peer file transfer solution.
 
-<h3>Security and Compliance:</h3>
-    <p>Offers robust encryption methods (e.g., TLS and SSH). Complies with data security standards like GDPR, PCI DSS, and HIPAA. Includes authentication mechanisms to prevent unauthorized access.</p>
+| Document | Contents |
+|----------|----------|
+| 📄 [Installation Procedure (PDF)](Stering%20Connect%20Direct%20Installation%20Procedure.pdf) | Step-by-step installation |
+| 📊 [IBM Sterling Connect:Direct (PPTX)](IBM%20Sterling%20ConnectDirect.pptx) | Overview presentation: architecture, features, use cases |
 
-<h3>Automation and Scheduling:</h3>
-    <p>Built-in scheduling features allow automated file transfers. Reduces manual intervention and ensures timely delivery of files.</p>
+## What is Connect:Direct?
 
-<h3>Platform Independence:</h3>
-    <p>Compatible with multiple platforms, including Windows, Linux, UNIX, and IBM mainframes. Ensures seamless integration in heterogeneous IT environments.</p>
+Formerly **NDM (Network Data Mover)**, Connect:Direct moves large batch files reliably between organisations and systems. It is far more secure and controllable than FTP.
 
-<h3>Error Handling and Recovery:</h3>
-    <p>Provides advanced error handling with notifications and logs. Supports automatic retries and recovery from transmission failures.</p>
+### Key features
 
-<h3>Integration with IBM Ecosystem:</h3>
-    <p>Works seamlessly with other IBM Sterling products like Sterling File Gateway and Sterling Control Center. Supports end-to-end visibility and management of file transfers.</p>
+- ⚡ **High performance** with **checkpoint/restart**, so interrupted transfers resume
+- 🔐 **Security & compliance:** TLS, Secure+ and strong authentication, aligned with PCI DSS, HIPAA and GDPR
+- ⏰ **Automation:** built-in scheduling and *Process* scripts
+- 🖥️ **Cross-platform:** Windows, Linux, UNIX and z/OS mainframes
+- ♻️ **Error handling:** automatic retries, notifications and detailed statistics logs
+- 🧩 **IBM ecosystem:** integrates with Sterling File Gateway and Sterling Control Center
 
-<h3>Scalability:</h3>
-    <p>Can handle increasing data transfer volumes as business needs grow. Ensures optimal performance in distributed environments.</p>
+### Architecture
 
-<h2>Architecture:</h2>
-    <h3>Peer-to-Peer Model:</h3>
-    <p>Files are transferred directly between nodes, reducing dependency on intermediaries. Nodes can be configured with rules and policies for file handling.</p>
+- **Peer-to-peer nodes:** files go directly between nodes, with no intermediary server
+- **Separate control and data channels** for efficiency and security
+- **Netmap** defines the partner nodes; **user proxies** map remote users to local IDs
 
-<h3>Agents and Listeners:</h3>
-    <p>Agents execute transfer jobs while listeners monitor incoming/outgoing connections.</p>
+### Use cases
 
-<h3>Control and Data Channels:</h3>
-    <p>Separate control and data channels ensure efficient and secure communication.</p>
+Banking (payment and statement files) · Retail (orders, inventory, shipping) · Telecoms (billing and usage logs) · Manufacturing (supply-chain data)
 
-<h2>Advantages:</h2>
-    <h3>Reliability:</h3>
-    <p>Guarantees data delivery with checkpoint/restart and integrity checks.</p>
+## Quick reference (UNIX CLI)
 
-<h3>Security:</h3>
-    <p>End-to-end encryption and compliance with stringent regulations.</p>
+```bash
+direct                                  # open the CLI
+submit file=copy.cdp;                   # submit a Process
+select process;                         # running / queued processes
+select statistics pnumber=<n>;          # result of a transfer
+```
 
-<h3>Cost Efficiency:</h3>
-    <p>Eliminates the need for manual interventions and reduces operational overhead.</p>
+Sample Process (`copy.cdp`):
 
-<h3>Integration-Friendly:</h3>
-    <p>Easily integrates with existing applications, middleware, and IT infrastructure.</p>
-
-<h3>Visibility:</h3>
-    <p>Provides detailed tracking and reporting for complete audit trails.</p>
-
-<h2>Use Cases:</h2>
-    <h3>Banking and Finance:</h3>
-    <p>Securely transfer sensitive financial data, including payment files, credit reports, and customer records.</p>
-
-<h3>Retail:</h3>
-    <p>Manage supply chain file transfers, including order details, shipping updates, and inventory data.</p>
-
-<h3>Telecommunications:</h3>
-    <p>Exchange configuration data, billing information, and usage logs.</p>
-
-<h3>Manufacturing:</h3>
-    <p>Transfer engineering designs, procurement details, and production schedules.</p>
-    
-<h2>Conclusion:</h2>
-    <p>IBM Sterling Connect:Direct is a proven solution for secure, reliable, and automated file transfers in enterprise environments. It ensures business continuity, compliance, and performance, making it an essential tool for organizations dealing with mission-critical data transfers.</p>
-
+```text
+COPYFILE PROCESS SNODE=PARTNER_NODE
+STEP1 COPY FROM (FILE=/data/out/report.csv PNODE)
+           TO   (FILE=/data/in/report.csv  SNODE DISP=RPL)
+PEND
+```
